@@ -18,9 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    echo "This is home Page";
+});
+
 Route::get('/about', function () {
     return view('about');
-});
+})->middleware('check');
 
 // Route::get('/contact', function () {
 //     return view('contact');
