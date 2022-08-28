@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ContactController;
+use app\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,17 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    echo "This is home Page";
-});
+Route::get('/dashboard', function () {
 
-Route::get('/about', function () {
-    return view('about');
-})->middleware('check');
+    $users= User::all();
+    return view('dashboard', compact('users'));
+})->middleware(['auth'])->name('dashboard');
 
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
-
-//Route With Using Controller
-Route::get('/contact', [ContactController::class, 'index']);
+require __DIR__.'/auth.php';
