@@ -1,7 +1,9 @@
 <?php
 
 use app\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
 
-    $users= User::all();
+   // $users= User::all();  //Read Users Data by Eloquent ORM
+
+    $users = DB::table('users')->get();  //Read Users Data by Query Builder
+
     return view('dashboard', compact('users'));
 })->middleware(['auth'])->name('dashboard');
 
