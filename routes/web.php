@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use app\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Category Controller
+Route::get('/category/all',[CategoryController::class, 'AllCat'])->name('all.category');
+Route::post('/category/add',[CategoryController::class, 'AddCat'])->name('store.category');
 
 Route::get('/dashboard', function () {
 
