@@ -14,4 +14,12 @@ class Category extends Model
         'user_id',
         'category_name',
     ];
+
+    //Eloquent ORM One to One Relationship
+
+    // public function user(){
+    //     return $this->hasOne(User::class, 'id', 'user_id');
+    // }
+
+
 }
