@@ -25,6 +25,10 @@ Route::get('/', function () {
 Route::get('/category/all',[CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/category/add',[CategoryController::class, 'AddCat'])->name('store.category');
 
+//Category Edit
+Route::get('category/edit/{id}',[CategoryController::class, 'Edit']);
+Route::post('category/update/{id}',[CategoryController::class, 'Update']);
+
 Route::get('/dashboard', function () {
 
    // $users= User::all();  //Read Users Data by Eloquent ORM

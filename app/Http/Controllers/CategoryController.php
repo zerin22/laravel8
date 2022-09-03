@@ -12,20 +12,20 @@ class CategoryController extends Controller
 {
     public function AllCat(){
 
-        //Join Table With Query Builder
-        $categories = DB::table('categories')
-                    ->join('users','categories.user_id','users.id')
-                    ->select('categories.*','users.name')
-                    ->latest()->paginate(5);
+        // //Join Table With Query Builder
+        // $categories = DB::table('categories')
+        //             ->join('users','categories.user_id','users.id')
+        //             ->select('categories.*','users.name')
+        //             ->latest()->paginate(5);
 
-        //Read data with Eloquent ORM
-        // $categories = Category::all();
-        // $categories = Category::latest()->get(); //last data will see at 1st in the row
-        //$categories = Category::latest()->paginate(5);
+        // //Read data with Eloquent ORM
+        //$categories = Category::all();
+        //$categories = Category::latest()->get(); //last data will see at 1st in the row
+        $categories = Category::latest()->paginate(5);
 
-        //Read Data with Query Builder & Pagination
+        // //Read Data with Query Builder & Pagination
         // $categories = DB::table('categories')->latest()->get();
-        //$categories = DB::table('categories')->latest()->paginate(5);
+        // $categories = DB::table('categories')->latest()->paginate(5);
 
         return view ('admin.category.index', compact('categories'));
     }
@@ -48,14 +48,14 @@ class CategoryController extends Controller
         ]);
 
 
-        //Insert Data With Eloquent ORM 2nd Process
+        // //Insert Data With Eloquent ORM 2nd Process
 
         // $category =new Category();
         // $category->category_name = $request->category_name;
         // $category->user_id = Auth::user()->id;
         // $category->save();
 
-        //Insert Data With Query Builder
+        // //Insert Data With Query Builder
 
         // $data = array();
         // $data['category_name'] = $request->category_name;
@@ -65,8 +65,26 @@ class CategoryController extends Controller
         //After Save Data redirect page with message
         return redirect()->back()->with('success', 'Category Inserted Successfully');
 
+    }
 
+    //Edit Data(category) with Eloquent ORM
+    public function Edit($id){
+        $categories = Category::find($id);
+        return view('admin.category.edit', compact('categories'));
+    }
 
+    //Update Data(category) with Eloquent ORM
+    public function Update(Request $request, $id){
+        $categories = Category::find($id)->update([
+            'category_name' => $request->category_name,
+            'user_id' => Auth::user()->id,
+
+        ]);
+        return redirect()->route('all.category')->with('success', 'Category Updated Successfully');
 
     }
+
+
+
+
 }
