@@ -12,17 +12,20 @@ class CategoryController extends Controller
 {
     public function AllCat(){
 
-        //Read data with Eloquent ORM
+        //Join Table With Query Builder
+        $categories = DB::table('categories')
+                    ->join('users','categories.user_id','users.id')
+                    ->select('categories.*','users.name')
+                    ->latest()->paginate(5);
 
+        //Read data with Eloquent ORM
         // $categories = Category::all();
         // $categories = Category::latest()->get(); //last data will see at 1st in the row
-        $categories = Category::latest()->paginate(5);
+        //$categories = Category::latest()->paginate(5);
 
-        //Read Data with Query Builder
-       // $categories = DB::table('categories')->latest()->get();
-
-        //Pagination
-       // $categories = DB::table('categories')->latest()->paginate(5);
+        //Read Data with Query Builder & Pagination
+        // $categories = DB::table('categories')->latest()->get();
+        //$categories = DB::table('categories')->latest()->paginate(5);
 
         return view ('admin.category.index', compact('categories'));
     }

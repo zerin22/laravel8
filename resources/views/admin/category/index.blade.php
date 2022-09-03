@@ -40,7 +40,12 @@
                                     <tr>
                                         <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
                                         <td>{{ $category->category_name }}</td>
-                                        <td>{{ $category->user->name }}</td>
+                                        {{-- For Eloquent ORM Join Table We use 1st Method Name Than Field Name --}}
+                                        {{-- <td>{{ $category->user->name }}</td>  --}}
+
+                                        {{--  Join Table With Query Builder --}}
+                                       <td>{{ $category->name }}</td>
+
                                         <td>
                                             @if ($category->created_at == Null)
                                                 <span class="text-danger">No Date Set</span>

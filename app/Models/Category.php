@@ -17,9 +17,9 @@ class Category extends Model
 
     //Eloquent ORM One to One Relationship
 
-    public function user(){
-        return $this->hasOne(User::class, 'id', 'user_id');
-    }
+    // public function user(){
+    //     return $this->hasOne(User::class, 'id', 'user_id');
+    // }
 
 
 }
