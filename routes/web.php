@@ -29,6 +29,16 @@ Route::post('/category/add',[CategoryController::class, 'AddCat'])->name('store.
 Route::get('category/edit/{id}',[CategoryController::class, 'Edit']);
 Route::post('category/update/{id}',[CategoryController::class, 'Update']);
 
+//SoftDelete Category
+Route::get('softdelete/category/{id}',[CategoryController::class, 'SoftDelete']);
+
+//Restore Category
+Route::get('category/restore/{id}',[CategoryController::class, 'Restore']);
+
+//Parmanent Delete
+Route::get('category/pdelete/{id}',[CategoryController::class, 'Pdelete']);
+
+
 Route::get('/dashboard', function () {
 
    // $users= User::all();  //Read Users Data by Eloquent ORM

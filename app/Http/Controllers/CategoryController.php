@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
@@ -22,12 +23,13 @@ class CategoryController extends Controller
         //$categories = Category::all();
         //$categories = Category::latest()->get(); //last data will see at 1st in the row
         $categories = Category::latest()->paginate(5);
+        $trashCat = Category::onlyTrashed()->latest()->paginate(3); //for temporary catagory delete
 
         // //Read Data with Query Builder & Pagination
         // $categories = DB::table('categories')->latest()->get();
         // $categories = DB::table('categories')->latest()->paginate(5);
 
-        return view ('admin.category.index', compact('categories'));
+        return view ('admin.category.index', compact('categories','trashCat'));
     }
 
     public function AddCat(Request $request){
@@ -90,7 +92,23 @@ class CategoryController extends Controller
 
     }
 
+    //Soft Delete Category Method
+    public function SoftDelete($id){
+        $delete = Category::find($id)->delete();
+        return Redirect()->back()->with('success', 'Category Soft Delete Successfully');
+    }
 
+    //Restore Category Method
+    public function Restore($id){
+        $restore = Category::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success', 'Category Restore Successfully');
+    }
+
+    //Parmanent delete Method
+    public function Pdelete($id){
+        $pdelete = Category::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success', 'Category Parmanently Deleted ');
+    }
 
 
 }
