@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use app\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,9 @@ Route::get('category/restore/{id}',[CategoryController::class, 'Restore']);
 
 //Parmanent Delete
 Route::get('category/pdelete/{id}',[CategoryController::class, 'Pdelete']);
+
+//Brand Controller
+Route::get('brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 
 
 Route::get('/dashboard', function () {

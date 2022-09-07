@@ -70,7 +70,7 @@
                         {{ $categories->links() }}
                     </div>
                 </div>
-
+{{-- Add Category --}}
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">Add Category</div>
@@ -109,7 +109,7 @@
                                 <th scope="col">SL No</th>
                                 <th scope="col">Category Name</th>
                                 <th scope="col">User</th>
-                                <th scope="col">Created At</th>
+                                <th scope="col">Deleted At</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
@@ -133,7 +133,7 @@
 
                                                 {{-- For Query Builder --}}
 
-                                                {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                                {{ Carbon\Carbon::parse($category->deleted_at)->diffForHumans() }}
                                             @endif
                                         </td>
                                         <td>
