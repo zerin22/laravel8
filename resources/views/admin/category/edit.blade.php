@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- {{ __('Dashboard') }} --}}
 
-            All category
+            Edit category
 
         </h2>
     </x-slot>
