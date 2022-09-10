@@ -27,20 +27,22 @@ Route::get('/category/all',[CategoryController::class, 'AllCat'])->name('all.cat
 Route::post('/category/add',[CategoryController::class, 'AddCat'])->name('store.category');
 
 //Category Edit
-Route::get('category/edit/{id}',[CategoryController::class, 'Edit']);
-Route::post('category/update/{id}',[CategoryController::class, 'Update']);
+Route::get('/category/edit/{id}',[CategoryController::class, 'Edit']);
+Route::post('/category/update/{id}',[CategoryController::class, 'Update']);
 
 //SoftDelete Category
-Route::get('softdelete/category/{id}',[CategoryController::class, 'SoftDelete']);
+Route::get('/softdelete/category/{id}',[CategoryController::class, 'SoftDelete']);
 
 //Restore Category
-Route::get('category/restore/{id}',[CategoryController::class, 'Restore']);
+Route::get('/category/restore/{id}',[CategoryController::class, 'Restore']);
 
 //Parmanent Delete
-Route::get('category/pdelete/{id}',[CategoryController::class, 'Pdelete']);
+Route::get('/category/pdelete/{id}',[CategoryController::class, 'Pdelete']);
 
 //Brand Controller
-Route::get('brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+
+Route::post('/brand/add', [BrandController::class, 'StoreBrand'])->name('store.brand');
 
 
 Route::get('/dashboard', function () {

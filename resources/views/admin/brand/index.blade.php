@@ -42,20 +42,16 @@
                                         <th scope="row">{{ $brands->firstItem()+$loop->index }}</th>
                                         <td>{{ $brand->brand_name }}</td>
                                         {{-- For Eloquent ORM Join Table We use 1st Method Name Than Field Name --}}
-                                        <td><img src="" alt=""></td>
-
-                                        {{--  Join Table With Query Builder --}}
-                                       {{-- <td>{{ $category->name }}</td> --}}
-
+                                        <td><img src="{{ asset($brand->brand_image) }}" style="height: 40px; width= 70px;" alt=""></td>
                                         <td>
                                             @if ($brand->created_at == Null)
                                                 <span class="text-danger">No Date Set</span>
                                             @else
-                                                {{-- {{ $category->created_at->diffForHumans() }} --}}
+                                                {{ $brand->created_at->diffForHumans() }}
 
                                                 {{-- For Query Builder --}}
 
-                                                {{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }}
+                                                {{-- {{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }} --}}
                                             @endif
                                         </td>
                                         <td>
@@ -75,7 +71,7 @@
                     <div class="card">
                         <div class="card-header">Add Brand</div>
                         <div class="card-body">
-                            <form action="{{ route('store.category') }}" method="POST">
+                            <form action="{{ route('store.brand') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                   <label for="exampleInputEmail1">Brand Name</label>
