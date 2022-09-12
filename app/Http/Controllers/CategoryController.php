@@ -33,14 +33,6 @@ class CategoryController extends Controller
     }
 
     public function AddCat(Request $request){
-        $validated = $request->validate([
-            'category_name' => 'required|unique:categories|max:255',
-        ],
-        [
-            'category_name.required' => 'Please Input Category Name',
-            'category_name.max' => 'Category Less than 255Chars',
-        ]);
-
         //Insert Data by Eloquent ORM One Process
 
         Category::insert([
