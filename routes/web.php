@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Category Controller
+//Category Controller Route
 Route::get('/category/all',[CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/category/add',[CategoryController::class, 'AddCat'])->name('store.category');
 
@@ -39,13 +39,17 @@ Route::get('/category/restore/{id}',[CategoryController::class, 'Restore']);
 //Parmanent Delete
 Route::get('/category/pdelete/{id}',[CategoryController::class, 'Pdelete']);
 
-//Brand Controller
+//Brand Controller Route
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 
 Route::post('/brand/add', [BrandController::class, 'StoreBrand'])->name('store.brand');
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
+
+//Multi Image Route
+Route::get('/multi/image', [BrandController::class, 'MultiImage'])->name('multi.image');
+Route::post('/multi/add', [BrandController::class, 'StrorImg'])->name('store.image');
 
 
 
