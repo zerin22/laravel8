@@ -59,7 +59,7 @@ Route::get('/dashboard', function () {
 
     $users = DB::table('users')->get();  //Read Users Data by Query Builder
 
-    return view('dashboard', compact('users'));
+    return view('admin.index ');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
