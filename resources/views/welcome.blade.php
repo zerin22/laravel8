@@ -39,7 +39,7 @@
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 </div>
-                <h1>Dashboard Page</h1>
+                <h1>Welcome Page</h1>
                 <a href="{{ url('/') }}">Dashboard</a>|
                 <a href="{{ URL::to('/about') }}">About</a>|
                 <a href="{{  url('/contact') }}">Contact</a>|

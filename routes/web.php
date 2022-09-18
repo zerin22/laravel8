@@ -52,6 +52,7 @@ Route::get('/multi/image', [BrandController::class, 'MultiImage'])->name('multi.
 Route::post('/multi/add', [BrandController::class, 'StrorImg'])->name('store.image');
 
 
+//Admin Panel Route
 
 Route::get('/dashboard', function () {
 
@@ -63,3 +64,5 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/user/logout', [BrandController::class, 'Logout'])->name('user.logout');

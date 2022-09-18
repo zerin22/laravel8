@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Multipic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
@@ -140,5 +141,11 @@ class BrandController extends Controller
         }//end of foreach loop
 
         return Redirect()->back();
+    }
+
+    //Admin Panel Functions
+    public function Logout(){
+        Auth::logout();
+        return Redirect()->route('login')->with('success', 'User Logout');
     }
 }
