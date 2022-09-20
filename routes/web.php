@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use app\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $brands = DB::table('brands')->get();
+    return view('home', compact('brands'));
 });
 
 //Category Controller Route
@@ -52,7 +54,13 @@ Route::get('/multi/image', [BrandController::class, 'MultiImage'])->name('multi.
 Route::post('/multi/add', [BrandController::class, 'StrorImg'])->name('store.image');
 
 
-//Admin Panel Route
+//Admin All Route
+Route::get('/home/slider', [HomeController::class, 'HomeSlider'])->name('home.slider');
+Route::get('/add/slider', [HomeController::class, 'AddSlider'])->name('add.slider');
+Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('store.slider');
+
+
+
 
 Route::get('/dashboard', function () {
 
