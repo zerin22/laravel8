@@ -124,7 +124,7 @@ class BrandController extends Controller
     }
 
     //Add Multi image
-    public function StrorImg(Request $request){
+    public function StoreImg(Request $request){
 
         $image = $request->file('image');
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
@@ -51,13 +52,24 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 
 //Multi Image Route
 Route::get('/multi/image', [BrandController::class, 'MultiImage'])->name('multi.image');
-Route::post('/multi/add', [BrandController::class, 'StrorImg'])->name('store.image');
+Route::post('/multi/add', [BrandController::class, 'StoreImg'])->name('store.image');
 
 
 //Admin All Route
 Route::get('/home/slider', [HomeController::class, 'HomeSlider'])->name('home.slider');
 Route::get('/add/slider', [HomeController::class, 'AddSlider'])->name('add.slider');
 Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('store.slider');
+Route::get('/slider/edit/{id}', [HomeController::class, 'EditSlider']);
+Route::post('/slider/update/{id}', [HomeController::class, 'UpdateSlider']);
+Route::get('/slider/delete/{id}', [HomeController::class, 'DeleteSlider']);
+
+//Home About All Route
+Route::get('/home/about', [AboutController::class, 'HomeAbout'])->name('home.about');
+Route::get('/add/about', [AboutController::class, 'AddAbout'])->name('add.about');
+Route::post('/store/about', [AboutController::class, 'StoreAbout'])->name('store.about');
+
+
+
 
 
 
