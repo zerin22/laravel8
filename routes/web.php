@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
 use app\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
     $abouts = DB::table('home_abouts')->first();
-    return view('home', compact('brands', 'abouts'));
+    $services = DB::table('services')->get();
+    return view('home', compact('brands', 'abouts', 'services'));
 });
 
 //Category Controller Route
@@ -72,8 +74,13 @@ Route::get('/about/edit/{id}', [AboutController::class, 'EditAbout']);
 Route::post('/update/homeabout/{id}', [AboutController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 
-
-
+//Home Services All Route
+Route::get('/home/service', [ServiceController::class, 'HomeService'])->name('home.service');
+Route::get('/add/service', [ServiceController::class, 'AddService'])->name('add.service');
+Route::post('/store/about', [ServiceController::class, 'StoreService'])->name('store.service');
+Route::get('/service/edit/{id}', [ServiceController::class, 'EditService']);
+Route::post('/update/homeservice/{id}', [ServiceController::class, 'UpdateService']);
+Route::get('/service/delete/{id}', [ServiceController::class, 'DeleteService']);
 
 Route::get('/dashboard', function () {
 
