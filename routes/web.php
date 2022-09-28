@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
+use App\Models\Multipic;
 use app\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -25,25 +26,20 @@ Route::get('/', function () {
     $brands = DB::table('brands')->get();
     $abouts = DB::table('home_abouts')->first();
     $services = DB::table('services')->get();
-    return view('home', compact('brands', 'abouts', 'services'));
+    $images = Multipic::all();
+    return view('home', compact('brands', 'abouts', 'services', 'images'));
 });
 
 //Category Controller Route
 Route::get('/category/all',[CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/category/add',[CategoryController::class, 'AddCat'])->name('store.category');
-
-//Category Edit
 Route::get('/category/edit/{id}',[CategoryController::class, 'Edit']);
 Route::post('/category/update/{id}',[CategoryController::class, 'Update']);
-
-//SoftDelete Category
 Route::get('/softdelete/category/{id}',[CategoryController::class, 'SoftDelete']);
-
-//Restore Category
 Route::get('/category/restore/{id}',[CategoryController::class, 'Restore']);
-
-//Parmanent Delete
 Route::get('/category/pdelete/{id}',[CategoryController::class, 'Pdelete']);
+
+
 
 //Brand Controller Route
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
@@ -53,9 +49,13 @@ Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 
+
+
 //Multi Image Route
 Route::get('/multi/image', [BrandController::class, 'MultiImage'])->name('multi.image');
 Route::post('/multi/add', [BrandController::class, 'StoreImg'])->name('store.image');
+
+
 
 
 //Admin All Route
@@ -66,6 +66,8 @@ Route::get('/slider/edit/{id}', [HomeController::class, 'EditSlider']);
 Route::post('/slider/update/{id}', [HomeController::class, 'UpdateSlider']);
 Route::get('/slider/delete/{id}', [HomeController::class, 'DeleteSlider']);
 
+
+
 //Home About All Route
 Route::get('/home/about', [AboutController::class, 'HomeAbout'])->name('home.about');
 Route::get('/add/about', [AboutController::class, 'AddAbout'])->name('add.about');
@@ -74,6 +76,8 @@ Route::get('/about/edit/{id}', [AboutController::class, 'EditAbout']);
 Route::post('/update/homeabout/{id}', [AboutController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 
+
+
 //Home Services All Route
 Route::get('/home/service', [ServiceController::class, 'HomeService'])->name('home.service');
 Route::get('/add/service', [ServiceController::class, 'AddService'])->name('add.service');
@@ -81,6 +85,14 @@ Route::post('/store/about', [ServiceController::class, 'StoreService'])->name('s
 Route::get('/service/edit/{id}', [ServiceController::class, 'EditService']);
 Route::post('/update/homeservice/{id}', [ServiceController::class, 'UpdateService']);
 Route::get('/service/delete/{id}', [ServiceController::class, 'DeleteService']);
+
+
+//Portfolio Page Route
+Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
+
+
+
+
 
 Route::get('/dashboard', function () {
 

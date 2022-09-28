@@ -1,10 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{-- {{ __('Dashboard') }} --}}
-            Multi Image
-        </h2>
-    </x-slot>
+@extends('admin.admin_master')
+
+@section('admin')
 
     <div class="py-12">
         <div class="container">
@@ -22,7 +18,7 @@
 
                     </div>
                 </div>
-{{-- Add Category --}}
+    {{-- Add Category --}}
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">Multi Image</div>
@@ -33,11 +29,11 @@
                                     <label for="exampleInputEmail1">Brand Image</label>
                                     <input type="file" name="image[]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Image" multiple="">
 
-                                          @error('image')
-                                              <span class="text-danger">{{ $message}} </span>
-                                          @enderror
+                                        @error('image')
+                                            <span class="text-danger">{{ $message}} </span>
+                                        @enderror
 
-                                  </div>
+                                </div>
 
                                 <button type="submit" class="btn btn-primary">Add Image</button>
                             </form>
@@ -47,4 +43,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+
+
+@endsection
+
