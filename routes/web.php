@@ -3,8 +3,11 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
+use App\Models\Contact;
+use App\Models\ContactForm;
 use App\Models\Multipic;
 use app\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +92,24 @@ Route::get('/service/delete/{id}', [ServiceController::class, 'DeleteService']);
 
 //Portfolio Page Route
 Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
+
+
+//Admin Contact Page
+Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('admin.contact');
+Route::get('/admin/add/contact', [ContactController::class, 'AdminAddContact'])->name('add.contact');
+Route::post('/admin/store/contact', [ContactController::class, 'AdminStoreContact'])->name('store.contact');
+Route::get('/admin/contact/edit/{id}', [ContactController::class, 'AdminEditContact']);
+Route::post('/admin/update/contact/{id}', [ContactController::class, 'AdminUpdateContact']);
+Route::get('/admin/contact/delete/{id}', [ContactController::class, 'AdminDeleteContact']);
+Route::get('/contact/message', [ContactController::class, 'AdminMessage'])->name('admin.message');
+Route::get('/message/delete/{id}', [ContactController::class, 'AdminMessageDelete']);
+
+
+
+///Contact Page Route
+Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
+Route::post('/contact/form', [ContactController::class, 'Contactform'])->name('contact.form');
+
 
 
 
