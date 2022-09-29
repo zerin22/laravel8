@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChangePassController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
@@ -113,8 +114,6 @@ Route::post('/contact/form', [ContactController::class, 'Contactform'])->name('c
 
 
 
-
-
 Route::get('/dashboard', function () {
 
    // $users= User::all();  //Read Users Data by Eloquent ORM
@@ -127,3 +126,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/user/logout', [BrandController::class, 'Logout'])->name('user.logout');
+
+
+///Change Password & User Profile Route
+
+Route::get('/user/password', [ChangePassController::class, 'CPassword'])->name('change.password');
+Route::post('/password/update', [ChangePassController::class, 'UpdatePassword'])->name('password.update');
+
