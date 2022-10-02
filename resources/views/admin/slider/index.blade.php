@@ -9,18 +9,7 @@
                 <a href="{{ route('add.slider') }}" class="btn btn-info ml-auto" >Add Slider</a>
                 <div class="col-md-12">
                     <div class="card">
-
-                        @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>{{ session('success')  }}</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
-
                         <div class="card-header">All Slider</div>
-
                         <table class="table">
                             <thead>
                               <tr>

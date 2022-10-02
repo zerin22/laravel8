@@ -57,7 +57,12 @@ class BrandController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return Redirect()->back()->with('success', 'Brand Inserted Successfully');
+         $notification = array(
+            'message' => 'Brand Inserted Successfully',
+            'alert-type' => 'success'
+         );
+
+        return Redirect()->back()->with($notification);
 
     }
 
@@ -96,14 +101,24 @@ class BrandController extends Controller
                 'created_at' => Carbon::now()
             ]);
 
-            return Redirect()->back()->with('success', 'Brand Updated Successfully');
+            $notification = array(
+                'message' => 'Brand Updated Successfully',
+                'alert-type' => 'success'
+             );
+
+            return Redirect()->back()->with($notification);
         }else{
             Brand::find($id)->update([
                 'brand_name' => $request->brand_name,
                 'created_at' => Carbon::now()
             ]);
 
-            return Redirect()->route('all.brand')->with('success', 'Brand Updated Successfully');
+            $notification = array(
+                'message' => 'Brand Updated Successfully',
+                'alert-type' => 'success'
+             );
+
+            return Redirect()->route('all.brand')->with($notification);
         }
 
     }
@@ -114,7 +129,13 @@ class BrandController extends Controller
         $old_image = $image->brand_image;
         unlink($old_image);
         Brand::find($id)->delete();
-        return Redirect()->back()->with('success', 'Brand Deleted Successfully');
+
+        $notification = array(
+            'message' => 'Brand Deleted Successfully',
+            'alert-type' => 'warning'
+         );
+
+        return Redirect()->back()->with($notification);
     }
 
     //This is For Multi Image All Image
@@ -146,6 +167,12 @@ class BrandController extends Controller
     //Admin Panel Functions
     public function Logout(){
         Auth::logout();
-        return Redirect()->route('login')->with('success', 'User Logout');
+
+        $notification = array(
+            'message' => 'User Logout',
+            'alert-type' => 'info'
+         );
+
+        return Redirect()->route('login')->with($notification);
     }
 }

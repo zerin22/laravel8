@@ -30,7 +30,12 @@ class AboutController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return Redirect()->route('home.about')->with('success', 'About Inserted Successfully');
+        $notification = array(
+            'message' => 'About Inserted Successfully',
+            'alert-type' => 'success'
+         );
+
+        return Redirect()->route('home.about')->with($notification);
     }
 
     public function EditAbout($id)
@@ -48,13 +53,24 @@ class AboutController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return Redirect()->route('home.about')->with('success', 'About Updated Successfully');
+        $notification = array(
+            'message' => 'About updated Successfully',
+            'alert-type' => 'success'
+         );
+
+        return Redirect()->route('home.about')->with($notification);
     }
 
     public function DeleteAbout($id)
     {
         $delete = HomeAbout::find($id)->Delete();
-        return Redirect()->back()->with('success', 'About Deleted Successfully');
+
+        $notification = array(
+            'message' => 'About Deleted Successfully',
+            'alert-type' => 'warning'
+         );
+
+        return Redirect()->back()->with($notification);
 
     }
 
